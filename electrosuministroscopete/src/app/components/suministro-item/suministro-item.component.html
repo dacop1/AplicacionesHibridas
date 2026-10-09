@@ -1,0 +1,28 @@
+
+<!-- Contenido de: src/app/components/suministro-item/suministro-item.component.html -->
+
+<!-- Tarjeta que contiene la información del suministro -->
+<ion-card>
+  <ion-item>
+
+    <!-- Nombre del suministro eléctrico -->
+    <ion-label>
+      <h2>{{ suministroscopete.nombre }}</h2>
+
+      <!-- Categoría del suministro -->
+      <p>{{ suministroscopete.categoria }}</p>
+
+      <!-- Precio del producto -->
+      <p>Precio: {{ suministroscopete.precio }} €</p>
+
+      <!-- Cantidad disponible en el almacén -->
+      <p>Stock: {{ suministroscopete.stock }}</p>
+    </ion-label>
+
+    <!-- Botón para mostrar los detalles en la consola -->
+    <ion-button (click)="mostrarDetalles()" slot="end">
+      Ver
+    </ion-button>
+
+  </ion-item>
+</ion-card>

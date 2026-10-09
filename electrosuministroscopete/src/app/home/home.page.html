@@ -1,20 +1,37 @@
+<!-- Cabecera principal de la aplicación -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Electrosuministros Copete
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!--
+    Directiva *ngIf: mostramos un mensaje si no hay suministros.
+    Si listaDeSuministros está vacío, se mostrará este mensaje.
+  -->
+  <div *ngIf="listaDeSuministros.length === 0" class="mensaje-vacio">
+    <p>El inventario está vacío.</p>
+    <p>No hay suministros registrados.</p>
   </div>
+
+  <!--
+    Directiva *ngFor: recorremos el array de suministros.
+    Por cada suministro, Angular crea un componente
+    SuministroItemComponent.
+  -->
+
+  <!-- ERROR: antes tenías *ngFor="let suministro of sum" -->
+  <!-- El nombre 'sum' no coincide con el array declarado en home.page.ts. -->
+
+  <!-- CORRECCIÓN: usamos el nombre correcto del array -->
+  <app-suministro-item
+    *ngFor="let suministro of listaDeSuministros"
+    [suministroscopete]="suministro">
+  </app-suministro-item>
+
 </ion-content>
+
