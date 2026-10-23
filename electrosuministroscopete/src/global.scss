@@ -35,3 +35,17 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+
+/* Fondo suave usando la variante tint del primario */
+.fondo-suave {
+  background: var(--ion-color-primary-tint);
+  color: var(--ion-color-primary-contrast);
+}
+
+/* Variante oscura para destacar */
+.fondo-oscuro {
+  background: var(--ion-color-primary-shade);
+  color: var(--ion-color-primary-contrast);
+}
