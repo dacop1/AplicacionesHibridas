@@ -5,16 +5,22 @@
 <ion-card>
   <ion-item>
 
+
+    <!-- Checkbox a la izquierda: slot="start" lo coloca antes del contenido -->
+    <ion-checkbox
+      slot="start"
+      aria-label="Seleccionar suministro"
+      [checked]="seleccionado"
+      (ionChange)="cambiarSeleccion($event)">
+    </ion-checkbox>
+
     <!-- Nombre del suministro eléctrico -->
     <ion-label>
       <h2>{{ suministroscopete.nombre }}</h2>
-
       <!-- Categoría del suministro -->
       <p>{{ suministroscopete.categoria }}</p>
-
       <!-- Precio del producto -->
       <p>Precio: {{ suministroscopete.precio }} €</p>
-
       <!-- Cantidad disponible en el almacén -->
       <p>Stock: {{ suministroscopete.stock }}</p>
     </ion-label>

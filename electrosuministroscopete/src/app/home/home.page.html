@@ -24,14 +24,19 @@
     SuministroItemComponent.
   -->
 
-  <!-- ERROR: antes tenías *ngFor="let suministro of sum" -->
-  <!-- El nombre 'sum' no coincide con el array declarado en home.page.ts. -->
+<ion-grid>
+  <ion-row>
+    <!-- El *ngFor va en la columna: se crea una columna por cada suministro -->
+    <ion-col
+      *ngFor="let suministro of listaDeSuministros"
+      size="12"
+      size-sm="6"
+      size-lg="4">
+      <app-suministro-item [suministroscopete]="suministro"></app-suministro-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
-  <!-- CORRECCIÓN: usamos el nombre correcto del array -->
-  <app-suministro-item
-    *ngFor="let suministro of listaDeSuministros"
-    [suministroscopete]="suministro">
-  </app-suministro-item>
 
 </ion-content>
 

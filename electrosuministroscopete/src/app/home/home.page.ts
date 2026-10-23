@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,17 +5,11 @@ import { CommonModule } from '@angular/common';
 // '@ionic/angular', porque el import anterior desde
 // '@ionic/angular/standalone' no se encontraba en tu proyecto.
 // Si este import también falla, habrá que comprobar tu versión de Ionic.
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent
-} from '@ionic/angular';
+import {IonHeader,IonToolbar,IonTitle,IonContent,IonGrid,IonRow,IonCol} from '@ionic/angular';
 
 // ERROR 2: Antes tenías una ruta parecida a:
 // '../components/suministro-item/SuministroItem.component'
 // El nombre del archivo y las mayúsculas no coincidían.
-//
 // CORRECCIÓN: Usamos la ruta del archivo generado:
 // suministro-item.component.ts
 import { SuministroItemComponent } from '../components/suministro-item/suministro-item.component';
@@ -37,10 +30,15 @@ import { Suministroscopete } from '../interfaces/suministroscopete';
     IonToolbar,
     IonTitle,
     IonContent,
+    IonGrid, // AÑADIDO3.2
+    IonRow,  // AÑADIDO3.2
+    IonCol,  // AÑADIDO3.2
+
     // Componente que muestra cada suministro eléctrico
     SuministroItemComponent, 
     // CORRECCIÓN: Cada elemento del array imports debe separarse con coma.
     CommonModule // Permite utilizar *ngIf y *ngFor
+
   ]
 })
 export class HomePage {
