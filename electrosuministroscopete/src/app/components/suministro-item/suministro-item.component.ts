@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 // Importamos CommonModule para utilizar directivas de Angular
 import { CommonModule } from '@angular/common';
 // Importamos los componentes de Ionic que usa la plantilla
-import {IonCard,IonItem,IonLabel,IonButton,IonCheckbox} from '@ionic/angular';
+import {IonCard,IonItem,IonLabel,IonButton,IonCheckbox,IonGrid,IonRow,IonCol} from '@ionic/angular';
 // Importamos la interfaz de nuestros suministros
 import { Suministroscopete } from '../../interfaces/suministroscopete';
 
@@ -19,7 +19,10 @@ import { Suministroscopete } from '../../interfaces/suministroscopete';
     IonItem,
     IonLabel,
     IonButton,
-    IonCheckbox //3.2 para poder usar <ion-checkbox> en el HTML
+    IonCheckbox, //3.2 para poder usar <ion-checkbox> en el HTML
+    IonGrid, // AÑADIDO 3.3
+    IonRow,  // AÑADIDO 3.3
+    IonCol   // AÑADIDO 3.3
   ]
 })
 export class SuministroItemComponent implements OnInit {

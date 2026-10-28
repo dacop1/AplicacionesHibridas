@@ -33,4 +33,16 @@
     </ion-button>
 
   </ion-item>
+
+  <!-- AÑADIDO 3.3: fila inferior con marca a la izquierda y referencia a la derecha -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-col size="auto">
+        <small>{{ suministroscopete.marca }}</small>
+      </ion-col>
+      <ion-col size="auto" class="ion-text-right">
+        <small>Ref: {{ suministroscopete.referencia }}</small>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-card>
