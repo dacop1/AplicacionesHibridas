@@ -13,3 +13,10 @@ ion-card {
 p {
   font-size: 0.9rem;
 }
+
+img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain; // muestra la imagen entera, sin recortar
+  display: block;
+}
