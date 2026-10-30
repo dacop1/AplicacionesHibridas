@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Component } from '@angular/core';
+import { Settings } from '../../services/settings';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar,
   IonButtons, IonBackButton,
@@ -15,31 +14,17 @@ import {
   imports: [
     IonContent, IonHeader, IonTitle, IonToolbar,
     IonButtons, IonBackButton,
-    IonList, IonListHeader, IonItem, IonLabel, IonToggle,
-    FormsModule
+    IonList, IonListHeader, IonItem, IonLabel, IonToggle
   ]
 })
-export class AjustesPage implements OnInit {
+export class AjustesPage {
 
-  modoOscuro: boolean = false; // Valor por defecto
+  // 'public' permite usar settingsService directamente en el HTML
+  constructor(public settingsService: Settings) { }
 
-  constructor(private settingsService: SettingsService) { }
-
-  async ngOnInit() {
-    // Cargamos el valor guardado; si no existe (primera vez) usamos false
-    this.modoOscuro = await this.settingsService.get('modo_oscuro') || false;
-    this.aplicarTema(this.modoOscuro);
-  }
-
-  async cambiarModoOscuro() {
-    // 1. Guardamos el nuevo valor
-    await this.settingsService.set('modo_oscuro', this.modoOscuro);
-    // 2. Aplicamos el cambio visualmente
-    this.aplicarTema(this.modoOscuro);
-  }
-
-  aplicarTema(esOscuro: boolean) {
-    // Añade o quita la clase 'dark' en el body; los estilos están en variables.scss
-    document.body.classList.toggle('dark', esOscuro);
+  // Se ejecuta cada vez que el usuario mueve el interruptor
+  onToggleChange(event: any) {
+    const isChecked = event.detail.checked;
+    this.settingsService.setDarkMode(isChecked);
   }
 }

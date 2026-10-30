@@ -12,7 +12,7 @@
     <ion-list-header>Apariencia</ion-list-header>
     <ion-item>
       <ion-label>Modo Oscuro</ion-label>
-      <ion-toggle [(ngModel)]="modoOscuro" (ionChange)="cambiarModoOscuro()"></ion-toggle>
+      <ion-toggle [checked]="settingsService.isDarkMode()" (ionChange)="onToggleChange($event)"></ion-toggle>
     </ion-item>
   </ion-list>
 </ion-content>
