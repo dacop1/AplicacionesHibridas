@@ -5,6 +5,12 @@
     <ion-title>
       Electrosuministros Copete
     </ion-title>
+    <!-- AÑADIDO: botón de ajustes -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/ajustes">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -25,19 +31,14 @@
     SuministroItemComponent.
   -->
 
-<ion-grid>
-  <ion-row>
-    <!-- El *ngFor va en la columna: se crea una columna por cada suministro -->
-    <ion-col
-      *ngFor="let suministro of listaDeSuministros"
-      size="12"
-      size-sm="6"
-      size-lg="4">
-      <app-suministro-item [suministroscopete]="suministro"></app-suministro-item>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+  <ion-grid>
+    <ion-row>
+      <!-- El *ngFor va en la columna: se crea una columna por cada suministro -->
+      <ion-col *ngFor="let suministro of listaDeSuministros" size="12" size-sm="6" size-lg="4">
+        <app-suministro-item [suministroscopete]="suministro"></app-suministro-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>
-

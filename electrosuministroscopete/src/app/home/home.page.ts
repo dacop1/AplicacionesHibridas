@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 // '@ionic/angular', porque el import anterior desde
 // '@ionic/angular/standalone' no se encontraba en tu proyecto.
 // Si este import también falla, habrá que comprobar tu versión de Ionic.
-import {IonHeader,IonToolbar,IonTitle,IonContent,IonGrid,IonRow,IonCol} from '@ionic/angular';
+import {IonHeader,IonToolbar,IonTitle,IonContent,IonGrid,IonRow,IonCol,IonButtons,IonButton,IonIcon} from '@ionic/angular'; // AÑADIDO: IonButtons, IonButton, IonIcon
 
 // ERROR 2: Antes tenías una ruta parecida a:
 // '../components/suministro-item/SuministroItem.component'
@@ -16,6 +16,10 @@ import { SuministroItemComponent } from '../components/suministro-item/suministr
 
 // Importamos la interfaz que define la estructura de cada suministro
 import { Suministroscopete } from '../interfaces/suministroscopete';
+
+import { RouterLink } from '@angular/router';              // AÑADIDO
+import { addIcons } from 'ionicons';                       // AÑADIDO
+import { settingsOutline } from 'ionicons/icons';          // AÑADIDO
 
 @Component({
   selector: 'app-home',
@@ -33,6 +37,10 @@ import { Suministroscopete } from '../interfaces/suministroscopete';
     IonGrid, // AÑADIDO3.2
     IonRow,  // AÑADIDO3.2
     IonCol,  // AÑADIDO3.2
+    IonButtons, // AÑADIDO
+    IonButton,  // AÑADIDO
+    IonIcon,     // AÑADIDO
+    RouterLink, // Añadido
 
     // Componente que muestra cada suministro eléctrico
     SuministroItemComponent, 
@@ -141,6 +149,8 @@ export class HomePage {
 
 
   // Constructor de la página
-  constructor() {}
+  constructor() {
+    addIcons({ settingsOutline }); // AÑADIDO: registra el icono de engranaje
+  }
 }
 
