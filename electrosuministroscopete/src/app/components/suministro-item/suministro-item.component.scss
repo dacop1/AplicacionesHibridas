@@ -15,8 +15,18 @@ p {
 }
 
 img {
-  width: 100%;
-  height: 180px;
-  object-fit: contain; // muestra la imagen entera, sin recortar
   display: block;
+  box-sizing: border-box;
+  width: calc(100% - 16px);
+  height: 180px;
+  margin: 8px 8px 0;
+  padding: 8px;                 /* AÑADIDO: aire entre la foto y el borde del panel */
+  background: #ffffff;          /* AÑADIDO: fondo blanco del panel */
+  border-radius: 12px;
+  object-fit: contain;          /* CAMBIADO: se ve la foto entera */
+}
+
+/* Modo oscuro: borde fino y sombra más marcada */
+:host-context(body.dark) ion-card {
+  box-shadow: 0 0 0 1px var(--ion-color-step-150), 0 6px 16px rgba(0, 0, 0, 0.5);
 }

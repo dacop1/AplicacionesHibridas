@@ -27,34 +27,63 @@
 
 
 
-  /* Variables del modo oscuro, definidas una sola vez */
+/* ===== MODO OSCURO ===== */
 @mixin dark-theme-variables {
-  --ion-color-primary: #428cff;
-  --ion-color-primary-rgb: 66, 140, 255;
+  color-scheme: dark;
+
+  /* Primario: azul profundo, legible con texto blanco */
+  --ion-color-primary: #2f6fe0;
+  --ion-color-primary-rgb: 47, 111, 224;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3a7be0;
-  --ion-color-primary-tint: #5598ff;
+  --ion-color-primary-shade: #2962c5;
+  --ion-color-primary-tint: #447de3;
 
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18, 18, 18;
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255, 255, 255;
+  /* Fondo y texto */
+  --ion-background-color: #0b1220;
+  --ion-background-color-rgb: 11, 18, 32;
+  --ion-text-color: #e6ebf5;
+  --ion-text-color-rgb: 230, 235, 245;
 
-  --ion-card-background: #1e1e1e;
-  --ion-item-background: #1e1e1e;
+  /* Superficies: tarjetas y listas más claras que el fondo */
+  --ion-card-background: #131c2e;
+  --ion-card-color: #b8c2d6;
+  --ion-item-background: #131c2e;
+  --ion-item-color: #e6ebf5;
+  --ion-toolbar-background: #0b1220;
+  --ion-border-color: #26324a;
+
+  /* Colores escalonados: bordes, separadores y textos secundarios */
+  --ion-color-step-50: #161d2b;
+  --ion-color-step-100: #212835;
+  --ion-color-step-150: #2c3340;
+  --ion-color-step-200: #373d4b;
+  --ion-color-step-250: #424855;
+  --ion-color-step-300: #4d5360;
+  --ion-color-step-350: #585e6b;
+  --ion-color-step-400: #636975;
+  --ion-color-step-450: #6e7480;
+  --ion-color-step-500: #797f8b;
+  --ion-color-step-550: #838995;
+  --ion-color-step-600: #8e94a0;
+  --ion-color-step-650: #999faa;
+  --ion-color-step-700: #a4aab5;
+  --ion-color-step-750: #afb5c0;
+  --ion-color-step-800: #bac0ca;
+  --ion-color-step-850: #c5cad5;
+  --ion-color-step-900: #d0d5e0;
+  --ion-color-step-950: #dbe0ea;
 }
 
-/* Activación automática según el sistema */
+/* Activación automática según el sistema operativo */
 @media (prefers-color-scheme: dark) {
   body {
     @include dark-theme-variables;
   }
 }
 
-/* Activación manual con la clase .dark */
+/* Activación manual desde el toggle (clase .dark) */
 body.dark {
   @include dark-theme-variables;
 }
-
 }
