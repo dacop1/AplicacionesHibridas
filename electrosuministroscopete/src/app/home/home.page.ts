@@ -62,7 +62,7 @@ export class HomePage {
       referencia: 'CAB-0025',
       precio: 1.85,
       stock: 125,
-      imagen: 'assets/img/Neutro25.jpg'
+      imagen: 'assets/img/CableNeutro25.jpg'
     },
     {
       id: 2,
