@@ -19,7 +19,7 @@ import { Suministroscopete } from '../interfaces/suministroscopete';
 
 import { RouterLink } from '@angular/router';              // AÑADIDO
 import { addIcons } from 'ionicons';                       // AÑADIDO
-import { settingsOutline } from 'ionicons/icons';          // AÑADIDO
+import { settingsOutline, warning } from 'ionicons/icons';          // AÑADIDO el warning en 3.6
 
 @Component({
   selector: 'app-home',
@@ -150,7 +150,7 @@ export class HomePage {
 
   // Constructor de la página
   constructor() {
-    addIcons({ settingsOutline }); // AÑADIDO: registra el icono de engranaje
+    addIcons({ settingsOutline, warning }); // AÑADIDO: registra el icono de engranaje y peligro
   }
 }
 

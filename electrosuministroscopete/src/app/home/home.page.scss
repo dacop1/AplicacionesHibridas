@@ -32,3 +32,9 @@
   margin-left: 12px;
   border-radius: 6px;
 }
+
+ion-title ion-icon {
+  vertical-align: middle;   /* centra el icono con la línea del texto */
+  font-size: 1.1em;         /* un poco más grande que el texto */
+  margin: 0 6px;            /* separación con el título */
+}
