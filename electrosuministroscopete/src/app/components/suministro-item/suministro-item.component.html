@@ -22,13 +22,14 @@
       <!-- Categoría del suministro -->
       <p>{{ suministroscopete.categoria }}</p>
       <!-- Precio del producto -->
-      <p>Precio: {{ suministroscopete.precio }} €</p>
+      <p><ion-icon name="pricetag-outline"></ion-icon> Precio: {{ suministroscopete.precio }} €</p> <!-- AÑADIDO 3.6: icono -->
       <!-- Cantidad disponible en el almacén -->
-      <p>Stock: {{ suministroscopete.stock }}</p>
+      <p><ion-icon name="cube-outline"></ion-icon> Stock: {{ suministroscopete.stock }}</p> <!-- AÑADIDO 3.6: icono -->
     </ion-label>
 
     <!-- Botón para mostrar los detalles en la consola -->
     <ion-button (click)="mostrarDetalles()" slot="end">
+      <ion-icon slot="start" name="eye-outline"></ion-icon> <!-- AÑADIDO 3.6: icono -->
       Ver
     </ion-button>
 
