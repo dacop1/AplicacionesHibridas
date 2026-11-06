@@ -38,8 +38,10 @@
 
 
 
-/* Fuentes: Lato (texto) y Montserrat (títulos) */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap');
+/* Fuentes: Lato (texto), Montserrat (nombres) y Kaushan Script (título principal) */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap');
+
+
 /* Fondo suave usando la variante tint del primario */
 .fondo-suave {
   background: var(--ion-color-primary-tint);
@@ -54,10 +56,12 @@
 
 
 /* Títulos con Montserrat */
-ion-title,
-h2 {
-  font-family: 'Montserrat', 'Lato', sans-serif;
-  letter-spacing: 0.3px;
+/* Título principal de la barra: Kaushan Script */
+ion-title {
+  font-family: 'Kaushan Script', cursive;
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
 }
 
 h2 {
