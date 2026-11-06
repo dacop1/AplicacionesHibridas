@@ -38,8 +38,6 @@
 
 
 
-/* Fuentes: Lato (texto), Montserrat (nombres) y Kaushan Script (título principal) */
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap');
 
 
 /* Fondo suave usando la variante tint del primario */
@@ -55,15 +53,56 @@
 }
 
 
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+
 /* Títulos con Montserrat */
 /* Título principal de la barra: Kaushan Script */
 ion-title {
-  font-family: 'Kaushan Script', cursive;
+  font-family: "Lobster", sans-serif;
   font-weight: 400;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
+  font-style: normal;
 }
 
-h2 {
-  font-size: 1.05rem;   /* Montserrat es ancha: evita que el nombre ocupe demasiadas líneas */
+/* Nombre del suministro */
+ion-label h2 {
+  font-size: 1.05rem;
+}
+
+
+
+/*
+  :nth-of-type(n) selecciona el elemento número "n" entre los hermanos
+  de su mismo tipo. Dentro de <ion-label> los <p> se cuentan en orden
+  (el <h2> no cuenta porque no es un <p>):
+    p:nth-of-type(1) -> categoría
+    p:nth-of-type(2) -> precio
+    p:nth-of-type(3) -> stock
+  Así se da estilo a cada línea sin añadir clases al HTML.
+*/
+
+
+/* 1.er p: categoría */
+ion-label p:nth-of-type(1) {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 2.º p: precio */
+ion-label p:nth-of-type(2) {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ion-color-primary);   /* CAMBIADO: modo claro, azul marino */
+}
+
+/* AÑADIDO: modo oscuro, el dorado */
+body.dark ion-label p:nth-of-type(2) {
+  color: gold;
+}
+
+/* 3.er p: stock */
+ion-label p:nth-of-type(3) {
+  font-size: 0.85rem;
 }
