@@ -27,6 +27,39 @@
     <p>No hay suministros registrados.</p>
   </div>
 
+
+
+
+    <!-- AÑADIDO 3.9: formulario para añadir suministros -->
+  <div class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-input label="Nombre" label-placement="floating" placeholder="Ej: Cable rojo 4 mm"
+          [(ngModel)]="nuevoSuministro.nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Categoría" label-placement="floating" placeholder="Ej: Cables"
+          [(ngModel)]="nuevoSuministro.categoria"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Marca" label-placement="floating" placeholder="Ej: Prysmian"
+          [(ngModel)]="nuevoSuministro.marca"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Precio (€)" label-placement="floating" type="number"
+          [(ngModel)]="nuevoSuministro.precio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Stock" label-placement="floating" type="number"
+          [(ngModel)]="nuevoSuministro.stock"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" (click)="agregarSuministro()" class="ion-margin-top">
+      Añadir suministro
+    </ion-button>
+  </div>
+  
   <!--
     Directiva *ngFor: recorremos el array de suministros.
     Por cada suministro, Angular crea un componente

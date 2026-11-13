@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 // '@ionic/angular', porque el import anterior desde
 // '@ionic/angular/standalone' no se encontraba en tu proyecto.
 // Si este import también falla, habrá que comprobar tu versión de Ionic.
-import {IonHeader,IonToolbar,IonTitle,IonContent,IonGrid,IonRow,IonCol,IonButtons,IonButton,IonIcon} from '@ionic/angular'; // AÑADIDO: IonButtons, IonButton, IonIcon
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonButtons, IonButton, IonIcon,IonList,IonItem,IonInput } from '@ionic/angular'; // AÑADIDO: IonButtons, IonButton, IonIcon
 
 // ERROR 2: Antes tenías una ruta parecida a:
 // '../components/suministro-item/SuministroItem.component'
@@ -20,6 +20,8 @@ import { Suministroscopete } from '../interfaces/suministroscopete';
 import { RouterLink } from '@angular/router';              // AÑADIDO
 import { addIcons } from 'ionicons';                       // AÑADIDO
 import { settingsOutline, warning } from 'ionicons/icons';          // AÑADIDO el warning en 3.6
+import { FormsModule } from '@angular/forms'; // AÑADIDO 3.9
+
 
 @Component({
   selector: 'app-home',
@@ -41,9 +43,13 @@ import { settingsOutline, warning } from 'ionicons/icons';          // AÑADIDO 
     IonButton,  // AÑADIDO
     IonIcon,     // AÑADIDO
     RouterLink, // Añadido
+    FormsModule, // AÑADIDO 3.9: imprescindible para [(ngModel)]
+    IonList,     // AÑADIDO 3.9
+    IonItem,     // AÑADIDO 3.9
+    IonInput,     // AÑADIDO 3.9
 
     // Componente que muestra cada suministro eléctrico
-    SuministroItemComponent, 
+    SuministroItemComponent,
     // CORRECCIÓN: Cada elemento del array imports debe separarse con coma.
     CommonModule // Permite utilizar *ngIf y *ngFor
 
@@ -145,12 +151,55 @@ export class HomePage {
     { id: 48, nombre: 'Pelacables automático', descripcion: 'Herramienta para pelar cables de 0,2 a 6 mm', categoria: 'Herramientas', marca: 'Klein Tools', referencia: 'HER-0001', precio: 18.90, stock: 15, imagen: 'assets/img/Pelacables.jpg' },
     { id: 49, nombre: 'Multímetro digital', descripcion: 'Multímetro para medir tensión, corriente y continuidad', categoria: 'Herramientas', marca: 'Fluke', referencia: 'HER-0004', precio: 129.00, stock: 6, imagen: 'assets/img/Multimetro.jpg' },
     { id: 50, nombre: 'Regletas de conexión (pack 10)', descripcion: 'Conectores rápidos de palanca para 3 cables', categoria: 'Accesorios', marca: 'Wago', referencia: 'ACC-0002', precio: 6.50, stock: 90, imagen: 'assets/img/Regletas.jpg' }
+  
+  
+    
+  
   ];
 
+    // AÑADIDO 3.9: objeto enlazado al formulario
+  public nuevoSuministro: Suministroscopete = {
+    id: 0,            // ID real al añadirlo
+    nombre: '',
+    descripcion: '',
+    categoria: '',
+    marca: '',
+    referencia: '',
+    precio: 0,
+    stock: 0,
+    imagen: ''
+  };
 
   // Constructor de la página
   constructor() {
     addIcons({ settingsOutline, warning }); // AÑADIDO: registra el icono de engranaje y peligro
   }
+
+
+    // AÑADIDO 3.9: añade el suministro del formulario a la lista
+  agregarSuministro() {
+    // Si el nombre está vacío, no hacemos nada
+    if (this.nuevoSuministro.nombre.trim().length === 0) {
+      return;
+    }
+
+    // Copia del objeto con ID único; precio y stock se convierten a número
+    const suministroParaAnadir: Suministroscopete = {
+      ...this.nuevoSuministro,
+      id: Date.now(),
+      precio: Number(this.nuevoSuministro.precio),
+      stock: Number(this.nuevoSuministro.stock)
+    };
+
+    // Lo añadimos al principio de la lista
+    this.listaDeSuministros.unshift(suministroParaAnadir);
+
+    // Vaciamos el formulario para el siguiente
+    this.nuevoSuministro = {
+      id: 0, nombre: '', descripcion: '', categoria: '', marca: '',
+      referencia: '', precio: 0, stock: 0, imagen: ''
+    };
+  }
+
 }
 
