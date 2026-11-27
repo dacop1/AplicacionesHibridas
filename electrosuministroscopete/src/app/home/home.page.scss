@@ -38,3 +38,25 @@ ion-title ion-icon {
   font-size: 1.1em;         /* un poco más grande que el texto */
   margin: 0 6px;            /* separación con el título */
 }
+
+
+/* AÑADIDO 3.11: esqueleto con el mismo aspecto que las tarjetas */
+.card-skeleton {
+  margin: 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid var(--ion-color-secondary);
+}
+
+.skeleton-img {
+  width: calc(100% - 16px);
+  height: 180px;
+  margin: 8px 8px 0;
+  --border-radius: 12px;
+}
+
+.skeleton-boton {
+  width: 48px;
+  height: 36px;
+  --border-radius: 6px;
+}

@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 // '@ionic/angular', porque el import anterior desde
 // '@ionic/angular/standalone' no se encontraba en tu proyecto.
 // Si este import también falla, habrá que comprobar tu versión de Ionic.
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonButtons, IonButton, IonIcon, IonList, IonItem, IonInput } from '@ionic/angular'; // AÑADIDO: IonButtons, IonButton, IonIcon
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonButtons, IonButton, IonIcon, IonList, IonItem, IonInput, IonCard, IonLabel, IonCheckbox, IonSkeletonText } from '@ionic/angular'; // AÑADIDO: IonButtons, IonButton, IonIcon // AÑADIDO 3.11: IonCard, IonLabel, IonCheckbox, IonSkeletonText
+
 
 // ERROR 2: Antes tenías una ruta parecida a:
 // '../components/suministro-item/SuministroItem.component'
@@ -47,7 +48,11 @@ import { ToastController, AlertController } from '@ionic/angular'; // AÑADIDO 3
     FormsModule, // AÑADIDO 3.9: imprescindible para [(ngModel)]
     IonList,     // AÑADIDO 3.9
     IonItem,     // AÑADIDO 3.9
-    IonInput,     // AÑADIDO 3.9
+    IonInput,         // AÑADIDO 3.9  <- con coma
+    IonCard,          // AÑADIDO 3.11
+    IonLabel,         // AÑADIDO 3.11
+    IonCheckbox,      // AÑADIDO 3.11
+    IonSkeletonText,  // AÑADIDO 3.11
 
     // Componente que muestra cada suministro eléctrico
     SuministroItemComponent,
@@ -158,6 +163,9 @@ export class HomePage {
 
   ];
 
+
+  // AÑADIDO 3.11: controla si se muestra el skeleton o la lista real
+  public cargando: boolean = true;
   // AÑADIDO 3.9: objeto enlazado al formulario
   public nuevoSuministro: Suministroscopete = {
     id: 0,            // ID real al añadirlo
@@ -177,11 +185,16 @@ export class HomePage {
     private alertController: AlertController    // AÑADIDO 3.10
   ) {
     addIcons({ settingsOutline, warning });
+
+    // AÑADIDO 3.11: simulamos una carga de 2 segundos
+    setTimeout(() => {
+      this.cargando = false;
+    }, 2000);
   }
 
 
   // AÑADIDO 3.9: añade el suministro del formulario a la lista
-    async agregarSuministro() { // CAMBIADO 3.10: ahora es async
+  async agregarSuministro() { // CAMBIADO 3.10: ahora es async
     // Si el nombre está vacío, avisamos con una alerta y no hacemos nada
     if (this.nuevoSuministro.nombre.trim().length === 0) {
       await this.mostrarAlertaNombre(); // AÑADIDO 3.10
@@ -210,7 +223,7 @@ export class HomePage {
 
 
 
-    // AÑADIDO 3.10: aviso breve al añadir
+  // AÑADIDO 3.10: aviso breve al añadir
   async mostrarToast() {
     const toast = await this.toastController.create({
       message: 'Suministro añadido correctamente',

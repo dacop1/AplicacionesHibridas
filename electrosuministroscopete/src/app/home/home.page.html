@@ -60,13 +60,36 @@
     </ion-button>
   </div>
   
+  <!-- AÑADIDO 3.11: SKELETON, solo mientras cargando es true -->
+  <ion-grid *ngIf="cargando">
+    <ion-row>
+      <ion-col *ngFor="let i of [1, 2, 3, 4, 5, 6]" size="12" size-sm="6" size-lg="4">
+        <ion-card class="card-skeleton">
+          <!-- Foto -->
+          <ion-skeleton-text [animated]="true" class="skeleton-img"></ion-skeleton-text>
+          <ion-item>
+            <ion-checkbox slot="start" [disabled]="true" aria-label="Cargando"></ion-checkbox>
+            <ion-label>
+              <h2><ion-skeleton-text [animated]="true" style="width: 70%;"></ion-skeleton-text></h2>
+              <p><ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text></p>
+              <p><ion-skeleton-text [animated]="true" style="width: 50%;"></ion-skeleton-text></p>
+              <p><ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text></p>
+            </ion-label>
+            <!-- Botón "Ver" -->
+            <ion-skeleton-text slot="end" [animated]="true" class="skeleton-boton"></ion-skeleton-text>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <!--
     Directiva *ngFor: recorremos el array de suministros.
     Por cada suministro, Angular crea un componente
     SuministroItemComponent.
   -->
 
-  <ion-grid>
+  <ion-grid *ngIf="!cargando"> <!-- CAMBIADO 3.11: solo se ve cuando ya ha cargado -->
     <ion-row>
       <!-- El *ngFor va en la columna: se crea una columna por cada suministro -->
       <ion-col *ngFor="let suministro of listaDeSuministros" size="12" size-sm="6" size-lg="4">
