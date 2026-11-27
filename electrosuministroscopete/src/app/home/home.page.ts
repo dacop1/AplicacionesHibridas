@@ -179,7 +179,7 @@ export class HomePage {
     imagen: ''
   };
 
-  // Constructor de la página
+    // Constructor de la página
   constructor(
     private toastController: ToastController,   // AÑADIDO 3.10
     private alertController: AlertController,   // AÑADIDO 3.10
@@ -189,13 +189,6 @@ export class HomePage {
     private cdr: ChangeDetectorRef
   ) {
     addIcons({ settingsOutline, warning });
-
-
-    // AÑADIDO persistencia: si hay una lista guardada, la usamos
-    const guardado = localStorage.getItem('suministros');
-    if (guardado) {
-      this.listaDeSuministros = JSON.parse(guardado);
-    }
 
     // AÑADIDO 3.11: simulamos una carga de 2 segundos
     setTimeout(() => {
@@ -208,24 +201,11 @@ export class HomePage {
     }, 2000);
   }
 
-  // AÑADIDO persistencia: guarda la lista completa en el navegador
-  guardarLista() {
-    localStorage.setItem('suministros', JSON.stringify(this.listaDeSuministros));
-  }
 
   // AÑADIDO 3.9: añade el suministro del formulario a la lista
   async agregarSuministro() { // CAMBIADO 3.10: ahora es async
     // Si el nombre está vacío, avisamos con una alerta y no hacemos nada
-    // AÑADIDO validación: comprobamos todos los campos
-    const vacio = (t: string) => !t || t.trim().length === 0;
-
-    if (
-      vacio(this.nuevoSuministro.nombre) ||
-      vacio(this.nuevoSuministro.categoria) ||
-      vacio(this.nuevoSuministro.marca) ||
-      !(Number(this.nuevoSuministro.precio) > 0) ||
-      !(Number.isInteger(Number(this.nuevoSuministro.stock)) && Number(this.nuevoSuministro.stock) >= 0)
-    ) {
+    if (this.nuevoSuministro.nombre.trim().length === 0) {
       await this.mostrarAlertaNombre(); // AÑADIDO 3.10
       return;
     }
@@ -238,10 +218,8 @@ export class HomePage {
       stock: Number(this.nuevoSuministro.stock)
     };
 
-  
     // Lo añadimos al principio de la lista
     this.listaDeSuministros.unshift(suministroParaAnadir);
-    this.guardarLista(); // AÑADIDO persistencia
 
     // Vaciamos el formulario para el siguiente
     this.nuevoSuministro = {
