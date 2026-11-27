@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 // Importamos CommonModule para utilizar directivas de Angular
 import { CommonModule } from '@angular/common';
 // Importamos los componentes de Ionic que usa la plantilla
-import {IonCard,IonItem,IonLabel,IonButton,IonCheckbox,IonGrid,IonRow,IonCol,IonIcon} from '@ionic/angular';
+import { IonCard, IonItem, IonLabel, IonButton, IonCheckbox, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/angular';
 // Importamos la interfaz de nuestros suministros
 import { Suministroscopete } from '../../interfaces/suministroscopete';
+import { ModalController } from '@ionic/angular'; // AÑADIDO 3.10
+import { DetalleModalComponent } from '../detalle-modal/detalle-modal.component'; // AÑADIDO 3.10
 
 
 @Component({
@@ -28,15 +30,31 @@ import { Suministroscopete } from '../../interfaces/suministroscopete';
 })
 export class SuministroItemComponent implements OnInit {
   @Input() suministroscopete!: Suministroscopete;
-    // AÑADIDO3.2: guarda si este elemento está marcado
+  // AÑADIDO3.2: guarda si este elemento está marcado
   seleccionado = false;
   // Constructor del componente
-  constructor() {}
+  constructor(private modalController: ModalController) { } // CAMBIADO 3.10
   // Método que se ejecuta al inicializar el componente
-  ngOnInit() {}
+  ngOnInit() { }
   // Método para mostrar los datos del suministro en la consola
-  mostrarDetalles() {
+  // CAMBIADO 3.10: ahora es async y abre el modal
+  async mostrarDetalles() {
     console.log('Datos del suministro:', this.suministroscopete);
+
+    const modal = await this.modalController.create({
+      component: DetalleModalComponent,
+      // Pasamos el suministro al modal
+      componentProps: {
+        suministro: this.suministroscopete
+      }
+    });
+    await modal.present();
+
+    // Esperamos a que se cierre para leer la respuesta
+    const { data, role } = await modal.onDidDismiss();
+    if (role === 'confirm') {
+      console.log('Modal cerrado. Datos recibidos:', data);
+    }
   }
 
   // AÑADIDO 3.2: se ejecuta cuando el usuario marca o desmarca el checkbox
