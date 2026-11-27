@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core'; // CAMBIADO 3.11: añadido ChangeDetectorRef
 import { CommonModule } from '@angular/common';
 
 // CORRECCIÓN 1: Importamos los componentes de Ionic desde
@@ -182,13 +182,16 @@ export class HomePage {
   // Constructor de la página
   constructor(
     private toastController: ToastController,   // AÑADIDO 3.10
-    private alertController: AlertController    // AÑADIDO 3.10
+    private alertController: AlertController,   // AÑADIDO 3.10 (con coma)
+    private cdr: ChangeDetectorRef              // AÑADIDO 3.11
   ) {
     addIcons({ settingsOutline, warning });
 
     // AÑADIDO 3.11: simulamos una carga de 2 segundos
     setTimeout(() => {
       this.cargando = false;
+      console.log('Carga terminada');
+      this.cdr.markForCheck(); // AÑADIDO 3.11: avisa a Angular de que refresque la vista
     }, 2000);
   }
 
