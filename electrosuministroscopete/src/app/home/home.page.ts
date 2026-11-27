@@ -179,19 +179,25 @@ export class HomePage {
     imagen: ''
   };
 
-  // Constructor de la página
+    // Constructor de la página
   constructor(
     private toastController: ToastController,   // AÑADIDO 3.10
-    private alertController: AlertController,   // AÑADIDO 3.10 (con coma)
-    private cdr: ChangeDetectorRef              // AÑADIDO 3.11
+    private alertController: AlertController,   // AÑADIDO 3.10
+    // AÑADIDO 3.11: ChangeDetectorRef es el objeto que controla cuándo Angular
+    // revisa la pantalla para ver si algún dato ha cambiado. Se pide en el
+    // constructor (inyección de dependencias) y se guarda como this.cdr.
+    private cdr: ChangeDetectorRef
   ) {
     addIcons({ settingsOutline, warning });
 
     // AÑADIDO 3.11: simulamos una carga de 2 segundos
     setTimeout(() => {
       this.cargando = false;
-      console.log('Carga terminada');
-      this.cdr.markForCheck(); // AÑADIDO 3.11: avisa a Angular de que refresque la vista
+      // markForCheck() avisa a Angular de que este componente ha cambiado y debe
+      // refrescarse. Hace falta porque un setTimeout no dispara por sí solo la
+      // detección de cambios: sin esta línea, la pantalla seguiría mostrando el
+      // skeleton aunque cargando ya valga false.
+      this.cdr.markForCheck();
     }, 2000);
   }
 
